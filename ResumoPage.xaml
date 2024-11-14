@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiCadastroEventos.ResumoPage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="White">
+
+    <ScrollView>
+        <VerticalStackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Voltar" Clicked="Button_Clicked"
+                        FontSize="15"
+                        HorizontalOptions="Start"
+                        Margin="15,40,0,15" />
+
+                <Label Style="{StaticResource Key=Headline}"
+                       Text="{Binding NomeEvento}"
+                       Margin="15,40,0,15"/>
+            </StackLayout>
+
+            <Label Style="{StaticResource Key=SubHeadline}"
+                   Text="{Binding Reserva, StringFormat='Por {0} Dias'}"
+                   HorizontalOptions="CenterAndExpand"
+                   TextColor="#03D5DD"
+                   Margin="0,0,0,10"/>
+
+            <ImageButton Source="palacio_catherine.png"
+                         CornerRadius="20"
+                         WidthRequest="350" />
+
+            <Frame BackgroundColor="#03D5DD"
+                   Margin="0,30,0,0">
+                <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="*, *">
+                    <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource Key=SubHeadline}"
+                           Text="Data Inicio: "
+                           HorizontalOptions="CenterAndExpand" />
+
+                    <Label Grid.Row="1" Grid.Column="0"
+                           Text="{Binding DataInicio, StringFormat='{}{0:dd/MM/yyyy}'}"
+                           HorizontalOptions="CenterAndExpand" />
+
+                    <Label Grid.Row="0" Grid.Column="1" Style="{StaticResource Key=SubHeadline}"
+                           Text="Data Termino: "
+                           HorizontalOptions="CenterAndExpand" />
+
+                    <Label Grid.Row="1" Grid.Column="1"
+                                Text="{Binding DataTermino, StringFormat='{}{0:dd/MM/yyyy}'}"
+                                HorizontalOptions="CenterAndExpand" />
+                </Grid>
+            </Frame>
+
+            <Label Text="{Binding EspacoSelecionado.Espaco, StringFormat='Local do Evento:  {0}'}"
+                   HorizontalOptions="StartAndExpand"
+                   Margin="45,30,0,0" />
+
+            <Label Text="{Binding QntPessoas, StringFormat='Quantidade de Participantes:  {0}'}"
+                   HorizontalOptions="StartAndExpand"
+                   Margin="45,15,0,0" />
+
+            <Label Text="{Binding CustoPessoas, StringFormat='Custo por Participante:  {0:C}'}"
+                   HorizontalOptions="StartAndExpand"
+                   Margin="45,15,0,0" />
+
+            <Label Text="{Binding ValorTotal, StringFormat='Valor Total:  {0:C}'}"
+                   Style="{StaticResource Key=SubHeadline}"
+                   FontAttributes="Bold"
+                   HorizontalOptions="StartAndExpand"
+                   Margin="45,25,0,30" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

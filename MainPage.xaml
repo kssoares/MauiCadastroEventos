@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiCadastroEventos.MainPage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="White">
+    
+    <ScrollView>
+        <VerticalStackLayout>
+            <Label Text="Comece a planejar o seu evento e conte conosco para cuidar dos detalhes!"
+                   HorizontalOptions="CenterAndExpand"
+                   Margin="15,20,15,20"/>
+
+            <Image Source="gate_catherine_palace.jpg"
+                   WidthRequest="400"
+                   Aspect="AspectFit" />
+
+            <Frame>
+                <VerticalStackLayout>
+                    <Label Style="{StaticResource Key=Headline}"
+                           Text="Escolha cada Detalhe:" 
+                           Margin="0,20,0,0" />
+
+                    <Label Text="Nome do Evento: "
+                           HorizontalOptions="StartAndExpand" 
+                           Margin="0,25,0,5" />
+                    <Entry x:Name="nome_evento" Placeholder="Escreva o nome do seu Evento..." />
+
+                    <Label Text="Selecione o Local do Evento: "
+                           HorizontalOptions="StartAndExpand"
+                           Margin="0,20,0,5" />
+                    <Picker x:Name="pck_local"
+                            ItemDisplayBinding="{Binding Espaco}"
+                            HorizontalOptions="FillAndExpand" />
+
+                    <StackLayout Orientation="Horizontal"
+                                 Margin="10,20,10,0">
+                        <Label Text="Número de Participantes: "
+                               VerticalTextAlignment="Center" />
+
+                        <Label Text="{Binding Value}"
+                               BindingContext="{x:Reference stp_participantes}"
+                               HorizontalOptions="CenterAndExpand" />
+
+                        <Stepper x:Name="stp_participantes"
+                                 Minimum="1" Maximum="100" Increment="1"
+                                 BackgroundColor="{StaticResource Gray900}"
+                                 HorizontalOptions="EndAndExpand" />
+                    </StackLayout>
+                    
+                    <Label Text="Custo por Participante:  "
+                           HorizontalOptions="StartAndExpand"
+                           Margin="0,15,0,5" />
+                    <Entry x:Name="custo_participante" Placeholder="R$..."
+                           Margin="0,0,0,0" />
+
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame BackgroundColor="#03D5DD"
+                   Margin="0,25,0,5">
+                <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="*, *">
+                    <Label Grid.Row="0" Grid.Column="0"
+                           Text="Data Inicio: "
+                           Style="{StaticResource Key=SubHeadline}"
+                           HorizontalOptions="CenterAndExpand" />
+                    
+                    <DatePicker Grid.Row="1" Grid.Column="0"
+                                x:Name="dtpck_inicio"
+                                DateSelected="dtpck_inicio_DateSelected"
+                                Format="dd/MM/yyyy"/>
+
+                    <Label Grid.Row="0" Grid.Column="1"
+                           Text="Data Termino: "
+                           Style="{StaticResource Key=SubHeadline}"
+                           HorizontalOptions="CenterAndExpand" />
+                    
+                    <DatePicker Grid.Row="1" Grid.Column="1"
+                                x:Name="dtpck_termino"
+                                Format="dd/MM/yyyy" />
+                </Grid>
+            </Frame>
+            
+            <Button Text="Confirmar" Clicked="Button_Clicked"
+                    FontAttributes="Bold"
+                    Margin="0,15,0,15" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
